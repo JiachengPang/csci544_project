@@ -3,3 +3,4 @@
 *.pth
 *.npz
 *.npy
+*.csv

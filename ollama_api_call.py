@@ -2,15 +2,15 @@ import requests
 import json
 
 
-url = "http://localhost:11434/api/chat"
+url = "http://localhost:11434/api/generate"
 
-premise = "A man wearing a snorkel and goggles gives a thumbs up as he and another person speed through the water."
+premise = "A man, woman, and child get their picture taken in front of the mountains."
 
-hypothesis = "There are two guys above the water"
+hypothesis = "A family on vacation is posing."
 
 dataset_label = "neutral"
 
-prompt = f"""What is the logical relationship between the following premise and hypothesis (one of entailment, neutral, or contradiction)? Your answer should strictly follow the given example format. For example:
+prompt = f"""What is the logical relationship between the following premise and hypothesis (one of entailment, neutral, or contradiction)? Your answer should strictly follow the given example format and should contains only the answer part. For example:
 
 Question:
 Premise: A man in a tank top fixing himself a hotdog.
@@ -28,7 +28,7 @@ Answer:"""
 
 data = {
     "model": "llama3:latest",
-    "messages": [{"role": "user", "content": prompt}],
+    "prompt": prompt,
     "stream": False,
 }
 
@@ -42,8 +42,8 @@ response = requests.post(url, headers=headers, data=json.dumps(data))
 if response.status_code == 200:
     try:
         result = response.json()
-        result = result["message"]
-        result = result["content"]
+        result = result["response"]
+        result = json.dumps(json.loads(result), indent=4)
         print(
             f"\nPremise: {premise}\nHypothesis: {hypothesis}\nLabel in dataset: {dataset_label}\n\nLlama-3.1-8B response:\n{result}\n"
         )

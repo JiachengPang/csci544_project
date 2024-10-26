@@ -40,7 +40,7 @@ Hypothesis: A male is getting a drink of water.
 Answer:
 {{"relationship": "entailment", "cot": "1. Premise Analysis: The premise states that 'A boy is drinking out of a water fountain shaped like a woman.' This clearly describes a male (the boy) who is drinking water. 2. Hypothesis Analysis: The hypothesis says 'A male is getting a drink of water.' This aligns directly with the premise, as the boy is male and is drinking water. 3. Comparing the Two: The premise directly supports the hypothesis, as the action and the subject (a male drinking water) are explicitly mentioned. 4. Conclusion: The hypothesis is definitely true given the premise, so the relationship is entailment."}}
 
-What is the logical relationship between the following premise and hypothesis? Your answer should strictly follow the standard parseable JSON format: {{"relationship": <your answer>, "cot": <your chain-of-though>}} and should be based solely on the information provided in the premise and hypothesis, without any common sense knowledge or external information, and should contain only the answer part, avoid using stuff like 'Let's analyze the premise and hypothesis:' or 'Here is my answer:'.
+What is the logical relationship between the following premise and hypothesis? Your answer should: 1. strictly follow the standard parseable JSON format: {{"relationship": <your answer>, "cot": <your chain-of-though>}}; 2. based solely on the information provided in the premise and hypothesis, without any common sense knowledge or external information; 3. contain only the answer part, avoid using stuff like 'Let's analyze the premise and hypothesis:' or 'Here is my answer:'.
 
 Question:
 Premise: {premise} 

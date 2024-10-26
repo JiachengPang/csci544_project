@@ -10,7 +10,13 @@ hypothesis = "A family on vacation is posing."
 
 dataset_label = "entailment"
 
-prompt = f"""What is the logical relationship between the following premise and hypothesis (one of entailment, neutral, or contradiction)? Your answer should strictly follow the given example format and should contains only the answer part. Entailment means the hypothesis if definitely a true description of the premise; contradiction means the hypothesis is definitely false given the premise; neutral means the hypothesis is might be a true description of the premise, but there is no direct evidence to support it.
+prompt = f"""What is the logical relationship between the following premise and hypothesis (one of entailment, neutral, or contradiction)? Your answer should strictly follow the given example format and should contains only the answer part. 
+
+Entailment means the hypothesis if definitely a true description of the premise;
+
+Contradiction means the hypothesis is definitely false given the premise;
+
+Neutral means the hypothesis is might be a true description of the premise, but there is no direct evidence to support it.
 
 For example:
 

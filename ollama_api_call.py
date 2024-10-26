@@ -13,15 +13,9 @@ dataset_label = "entailment"
 prompt = f"""
 The logical relationship between the following premise and hypothesis is defined as one of the following:
 
-neutral: the hypothesis might be a true description of the premise, but there is no direct evidence to support it. One can neither confirm nor deny the hypothesis based on the premise;
-
-contradiction: the hypothesis is definitely false given the premise. One can confidently say that the hypothesis is not true based on the premise;
-
-entailment: the hypothesis is definitely true given the premise. One can confidently say that the hypothesis is true based on the premise.
-
-The answer should be based solely on the information provided in the premise and hypothesis, without any common sense knowledge or external information.
-
-What is the logical relationship between the following premise and hypothesis? Your answer should strictly follow the standard parseable JSON format: {{"relationship": <your answer>, "cot": <your chain-of-though>}} and should contain only the answer part, avoid using stuff like 'Let's analyze the premise and hypothesis:' or 'Here is my answer:'. 
+neutral: the hypothesis might be a true description of the premise, but there is no direct evidence to support it, you can neither accept nor reject the hypothesis based on the premise;
+contradiction: the hypothesis is definitely false given the premise, you can reject the hypothesis based on the premise;
+entailment: the hypothesis is definitely true given the premise, you can accept the hypothesis based on the premise.
 
 For example:
 
@@ -46,7 +40,7 @@ Hypothesis: A male is getting a drink of water.
 Answer:
 {{"relationship": "entailment", "cot": "1. Premise Analysis: The premise states that 'A boy is drinking out of a water fountain shaped like a woman.' This clearly describes a male (the boy) who is drinking water. 2. Hypothesis Analysis: The hypothesis says 'A male is getting a drink of water.' This aligns directly with the premise, as the boy is male and is drinking water. 3. Comparing the Two: The premise directly supports the hypothesis, as the action and the subject (a male drinking water) are explicitly mentioned. 4. Conclusion: The hypothesis is definitely true given the premise, so the relationship is entailment."}}
 
-You are asked to answer the following question:
+What is the logical relationship between the following premise and hypothesis? Your answer should strictly follow the standard parseable JSON format: {{"relationship": <your answer>, "cot": <your chain-of-though>}} and should be based solely on the information provided in the premise and hypothesis, without any common sense knowledge or external information, and should contain only the answer part, avoid using stuff like 'Let's analyze the premise and hypothesis:' or 'Here is my answer:'.
 
 Question:
 Premise: {premise} 

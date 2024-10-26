@@ -60,7 +60,7 @@ if response.status_code == 200:
         )
     except Exception as e:
         print(f"Llama response a JSON object, but could not parse it: {e}")
-        print(response.text)
+        print(response.json()["response"])
 else:
     print(f"Error: {response.status_code}")
     print(response.text)

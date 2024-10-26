@@ -12,9 +12,11 @@ dataset_label = "entailment"
 
 prompt = f"""
 The logical relationship between the following premise and hypothesis is defined as one of the following:
-Neutral means the hypothesis might be a true description of the premise, but there is no direct evidence to support it.
-Contradiction means the hypothesis is definitely false given the premise;
-Entailment means the hypothesis is definitely true given the premise.
+Neutral means the hypothesis might be a true description of the premise, but there is no direct evidence to support it. One can neither confirm nor deny the hypothesis based on the premise;
+Contradiction means the hypothesis is definitely false given the premise. One can confidently say that the hypothesis is not true based on the premise;
+Entailment means the hypothesis is definitely true given the premise. One can confidently say that the hypothesis is true based on the premise.
+
+The answer should be based solely on the information provided in the premise and hypothesis, without any common sense knowledge or external information.
 
 What is the logical relationship between the following premise and hypothesis? Your answer should strictly follow the standard parseable JSON format: {{"relationship": <your answer>, "cot": <your chain-of-though>}} and should contain only the answer part, avoid using stuff like 'Let's analyze the premise and hypothesis:' or 'Here is my answer:'. 
 

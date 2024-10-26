@@ -12,7 +12,7 @@ dataset_label = "entailment"
 
 prompt = f"""What is the logical relationship between the following premise and hypothesis (one of entailment, neutral, or contradiction)? Your answer should strictly follow the given example format and should contain only the answer part. 
 
-Entailment means the hypothesis if definitely a true description of the premise;
+Entailment means the hypothesis is definitely a true description of the premise;
 
 Contradiction means the hypothesis is definitely false given the premise;
 

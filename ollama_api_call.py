@@ -4,9 +4,9 @@ import json
 
 url = "http://localhost:11434/api/chat"
 
-premise = "A large crowd is gathered outside and one woman is yelling."
+premise = "A man wearing a snorkel and goggles gives a thumbs up as he and another person speed through the water."
 
-hypothesis = "A group of protestors engages with a woman inside an auditorium."
+hypothesis = "There are two guys above the water"
 
 dataset_label = "neutral"
 
@@ -16,10 +16,7 @@ Question:
 Premise: A man in a tank top fixing himself a hotdog.
 Hypothesis: The child was happy.
 
-Answer: {{
-    "relationship": "neutral",
-    "reason": "There's no direct link suggesting that the man’s action would make the child happy, nor is there any contradiction between the two. They describe different subjects and unrelated situations. Hence, they are neutral."
-}}
+Answer: {{"relationship": "neutral","reason": "There's no direct link suggesting that the man’s action would make the child happy, nor is there any contradiction between the two. They describe different subjects and unrelated situations. Hence, they are neutral."}}
 
 You are asked to answer the following question:
 

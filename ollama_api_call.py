@@ -10,28 +10,30 @@ hypothesis = "A family on vacation is posing."
 
 dataset_label = "entailment"
 
-prompt = f"""What is the logical relationship between the following premise and hypothesis (one of entailment, neutral, or contradiction)? Your answer should strictly follow the given example format and should contain only the answer part. 
-
-Entailment means the hypothesis is definitely a true description of the premise;
-
+prompt = f"""
+The logical relationship between the following premise and hypothesis is defined as one of the following:
+Neutral means the hypothesis might be a true description of the premise, but there is no direct evidence to support it.
 Contradiction means the hypothesis is definitely false given the premise;
+Entailment means the hypothesis is definitely true given the premise.
 
-Neutral means the hypothesis is might be a true description of the premise, but there is no direct evidence to support it.
+What is the logical relationship between the following premise and hypothesis? Your answer should strictly follow the standard parseable JSON format: {{"relationship": <your answer>, "cot": <your chain-of-though>}} and should contain only the answer part, avoid using stuff like 'Let's analyze the premise and hypothesis:' or 'Here is my answer:'. 
 
 For example:
 
 Question:
-Premise: A man in a tank top fixing himself a hotdog.
-Hypothesis: The child was happy.
+Premise: A person with a purple shirt is painting an image of a woman on a white wall.
+Hypothesis: A woman paints a portrait of a person.
 
-Answer: {{"relationship": "neutral","reason": "There's no direct link suggesting that the man’s action would make the child happy, nor is there any contradiction between the two. They describe different subjects and unrelated situations. Hence, they are neutral."}}
+Answer:
+{{"relationship": "neutral", "cot": "1. Premise Analysis: The premise states that 'A person with a purple shirt is painting an image of a woman on a white wall.' This provides specific information about the painter (wearing a purple shirt) and the subject being painted (a woman). 2. Hypothesis Analysis: The hypothesis says 'A woman paints a portrait of a person.' This introduces two ideas : The painter is a woman. She is painting a portrait of someone. 3. Comparing the Two: The premise does not explicitly say that the painter is a woman, nor does it confirm or deny the idea that she is painting a portrait. It only mentions the person with the purple shirt painting an image of a woman on a white wall. While it's possible that the painter could be a woman and painting a portrait, the premise doesn't provide direct evidence for this. 4. Conclusion: Since the hypothesis might be true (it's possible she's a woman painting a portrait) but there is no direct evidence provided in the premise, this makes the relationship neutral. There is no contradiction, nor an entailment."}}
 
 You are asked to answer the following question:
 
 Premise: {premise} 
 Hypothesis: {hypothesis}
 
-Answer:"""
+Answer:
+"""
 
 
 data = {
@@ -46,6 +48,7 @@ headers = {"Content-Type": "application/json"}
 
 response = requests.post(url, headers=headers, data=json.dumps(data))
 
+# print(f"{prompt=}")
 
 if response.status_code == 200:
     try:

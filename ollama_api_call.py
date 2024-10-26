@@ -12,9 +12,12 @@ dataset_label = "entailment"
 
 prompt = f"""
 The logical relationship between the following premise and hypothesis is defined as one of the following:
-Neutral means the hypothesis might be a true description of the premise, but there is no direct evidence to support it. One can neither confirm nor deny the hypothesis based on the premise;
-Contradiction means the hypothesis is definitely false given the premise. One can confidently say that the hypothesis is not true based on the premise;
-Entailment means the hypothesis is definitely true given the premise. One can confidently say that the hypothesis is true based on the premise.
+
+neutral: the hypothesis might be a true description of the premise, but there is no direct evidence to support it. One can neither confirm nor deny the hypothesis based on the premise;
+
+contradiction: the hypothesis is definitely false given the premise. One can confidently say that the hypothesis is not true based on the premise;
+
+entailment: the hypothesis is definitely true given the premise. One can confidently say that the hypothesis is true based on the premise.
 
 The answer should be based solely on the information provided in the premise and hypothesis, without any common sense knowledge or external information.
 

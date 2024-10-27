@@ -62,16 +62,16 @@ headers = {"Content-Type": "application/json"}
 response = requests.post(url, headers=headers, data=json.dumps(data))
 
 if response.status_code == 200:
+    result = response.json()
+    result = result["response"]
     try:
-        result = response.json()
-        result = result["response"]
         result = json.dumps(json.loads(result), indent=4)
         print(
             f"\nPremise: {premise}\nHypothesis: {hypothesis}\nLabel in dataset: {dataset_label}\n\nLlama-3.1-8B response:\n{result}\n"
         )
     except Exception as e:
-        print(f"Llama response a JSON object, but could not parse it: {e}")
-        print(response.json()["response"])
+        print(f"Llama response an answer in unknown format could not parse it: {e}")
+        # print(result)
 else:
     print(f"Error: {response.status_code}")
     print(response.text)

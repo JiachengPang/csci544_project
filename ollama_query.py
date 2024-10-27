@@ -7,6 +7,60 @@ import os
 
 OLLAMA_MODEL = 'llama3.2'
 
+def generate_prompt(premise, hypothesis):
+#     prompt = f"""
+# The logical relationship between the a premise and a hypothesis is defined as one of the following:
+# Entailment means the hypothesis is definitely true given the premise.
+# Neutral means the hypothesis might be a true description of the premise, but there is no direct evidence to support it.
+# Contradiction means the hypothesis is definitely false given the premise.
+
+# What is the logical relationship between the following premise and hypothesis? Your answer should strictly follow the standard parseable JSON format like the following:
+# {{"relationship": "<your_answer>", "reason": "<your_reason>"}}, where your_answer should strictly be one word - entailment, neutral, or contradiction.
+
+# Premise: {premise} 
+# Hypothesis: {hypothesis}
+
+# Answer:
+# """
+    prompt = f"""
+The logical relationship between the following premise and hypothesis is defined as one of the following:
+
+neutral: the hypothesis might be a true description of the premise, but there is no direct evidence to support it, you can neither accept nor reject the hypothesis based on the premise;
+contradiction: the hypothesis is definitely false given the premise, you can reject the hypothesis based on the premise;
+entailment: the hypothesis is definitely true given the premise, you can accept the hypothesis based on the premise.
+
+Examples:
+    Question:
+    Premise: A boy is drinking out of a water fountain shaped like a woman.
+    Hypothesis: A sculptor takes a drink from a fountain that he made that looks like his girlfriend.
+
+    Answer:
+    {{"relationship": "neutral", "cot": "1. Premise Analysis: The premise states 'A boy is drinking out of a water fountain shaped like a woman.' It describes a boy drinking from a fountain, with no information about who made the fountain or the boy's relationship to it. 2. Hypothesis Analysis: The hypothesis says 'A sculptor takes a drink from a fountain that he made that looks like his girlfriend.' It introduces two additional details: the person drinking is a sculptor, and the fountain was made by him to resemble his girlfriend. 3. Comparing the Two: The premise provides no direct information about the boy being a sculptor, nor that he created the fountain or that it looks like his girlfriend. While this scenario might be possible, the premise does not offer any evidence for the hypothesis. 4. Conclusion: Since the hypothesis might be true but there is no direct evidence to support it, the relationship is neutral."}}
+
+    Question:
+    Premise: A boy is drinking out of a water fountain shaped like a woman.
+    Hypothesis: A man is drinking lemonade from a glass.
+
+    Answer:
+    {{"relationship": "contradiction", "cot": "1. Premise Analysis: The premise states that 'A boy is drinking out of a water fountain shaped like a woman.' This provides specific information that a boy is drinking from a water fountain, not from a glass or any other container, and it mentions the type of drink is water. 2. Hypothesis Analysis: The hypothesis says 'A man is drinking lemonade from a glass.' This introduces new information: the drink is lemonade from a glass. 3. Comparing the Two: The premise clearly states the that the boy is drinking from a water fountain, not a glass, and it confirms the drink is water. 4. Conclusion: The hypothesis directly contradicts the premise because the drink, and the container are both different. Therefore, the relationship is contradiction."}}
+
+    Question:
+    Premise: A boy is drinking out of a water fountain shaped like a woman.
+    Hypothesis: A male is getting a drink of water.
+
+    Answer:
+    {{"relationship": "entailment", "cot": "1. Premise Analysis: The premise states that 'A boy is drinking out of a water fountain shaped like a woman.' This clearly describes a male (the boy) who is drinking water. 2. Hypothesis Analysis: The hypothesis says 'A male is getting a drink of water.' This aligns directly with the premise, as the boy is male and is drinking water. 3. Comparing the Two: The premise directly supports the hypothesis, as the action and the subject (a male drinking water) are explicitly mentioned. 4. Conclusion: The hypothesis is definitely true given the premise, so the relationship is entailment."}}
+
+What is the logical relationship between the following premise and hypothesis? Your answer should: 1. strictly follow the standard parseable JSON format: {{"relationship": <your answer>, "cot": <your chain-of-though>}}; 2. based solely on the provided information, without any common sense knowledge or external information; 3. contain only the answer part, avoid using stuff like 'Let's analyze the premise and hypothesis:' or 'Here is my answer:'.
+
+Question:
+Premise: {premise} 
+Hypothesis: {hypothesis}
+
+Answer:
+"""
+    return prompt
+
 def query_ollama_api(premise, hypothesis, model=OLLAMA_MODEL, server_url='http://localhost:11434/api/generate'):
     prompt = (
         f"What is the logical relationship between the following premise and hypothesis "
@@ -38,30 +92,7 @@ def query_ollama_api(premise, hypothesis, model=OLLAMA_MODEL, server_url='http:/
         print(f"Error querying Ollama API: {e}")
         return "Error querying model."
 
-def query_ollama_cmd(premise, hypothesis, model=OLLAMA_MODEL):
-    prompt = f"""What is the logical relationship between the following premise and hypothesis (one of entailment, neutral, or contradiction)? Your answer should strictly follow the given example format and should contain only the answer part. 
-
-Entailment means the hypothesis is definitely a true description of the premise;
-
-Contradiction means the hypothesis is definitely false given the premise;
-
-Neutral means the hypothesis is might be a true description of the premise, but there is no direct evidence to support it.
-
-For example:
-
-Question:
-Premise: A man in a tank top fixing himself a hotdog.
-Hypothesis: The child was happy.
-
-Answer: {{"relationship": "neutral","reason": "There's no direct link suggesting that the man’s action would make the child happy, nor is there any contradiction between the two. They describe different subjects and unrelated situations. Hence, they are neutral."}}
-
-You are asked to answer the following question:
-
-Premise: {premise} 
-Hypothesis: {hypothesis}
-
-Answer:"""
-
+def query_ollama_cmd(prompt, model=OLLAMA_MODEL):
     if os.name == 'nt':  # Windows
         command = f'ollama run {model}'
         result = subprocess.run(
@@ -87,6 +118,26 @@ Answer:"""
     
     return result.stdout.strip()
 
+def parse_response(response_text):
+    try:
+        response_text_processed = json.loads(response_text)
+        response_text_processed = response_text_processed['relationship']
+    except Exception as e:
+        print(f'Failed to load response text as json and get relationship. Message: {e}')
+        return -1
+            
+    if 'entailment' == response_text_processed:
+        response = 0
+    elif 'neutral' == response_text_processed:
+        response = 1
+    elif 'contradiction' == response_text_processed:
+        response = 2
+    else:
+        response = -1
+    
+    return response
+
+
 def process_csv(input_path, output_path, model=OLLAMA_MODEL):
     correct_count = 0
     total_count = 0
@@ -104,21 +155,12 @@ def process_csv(input_path, output_path, model=OLLAMA_MODEL):
                 index = row['index']
                 true_label = row['true_label']
 
-                response_text = query_ollama_cmd(premise, hypothesis, model=model).lower()
-                try:
-                    response_relationship = json.loads(response_text)
-                    response_relationship = response_relationship['relationship']
-                except Exception as e:
-                    print(f'Failed to load response text as json and get relationship. Message: {e}')
-                    continue
-                if 'entailment' in response_relationship:
-                    response = 0
-                elif 'neutral' in response_relationship:
-                    response = 1
-                elif 'contradiction' in response_relationship:
-                    response = 2
-                else:
-                    print(f'Malformed response: index {index}, skipping.')
+                prompt = generate_prompt(premise, hypothesis)
+                response_text = query_ollama_cmd(prompt, model=model)
+                response = parse_response(response_text)
+                if response == -1:                    
+                    print(f'Failed to parse response at index {index}. Skipping.')
+                    print(f'Response is {response_text}')
                     continue
 
                 row['response'] = response

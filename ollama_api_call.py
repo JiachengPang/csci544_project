@@ -4,20 +4,27 @@ import json
 
 url = "http://localhost:11434/api/generate"
 
-premise = "A birthday party for many little people to enjoy."
+premise = "During calf roping a cowboy calls off his horse."
 
-hypothesis = "Children enjoying a birthday party."
+hypothesis = "A man ropes a calf successfully."
 
 dataset_label = "NONE"
 
 prompt = f"""
 The logical relationship between the following premise and hypothesis is defined as one of the following:
 
+contradiction: the hypothesis is definitely false given the premise, you can reject the hypothesis based on the premise;
 entailment: the hypothesis is definitely true given the premise, you can accept the hypothesis based on the premise.
 neutral: the hypothesis might be a true description of the premise, but there is no direct evidence to support it, you can neither accept nor reject the hypothesis based on the premise;
-contradiction: the hypothesis is definitely false given the premise, you can reject the hypothesis based on the premise;
 
 Examples:
+    Question:
+    Premise: A boy is drinking out of a water fountain shaped like a woman.
+    Hypothesis: A man is drinking lemonade from a glass.
+
+    Answer:
+    {{"cot": "1. Premise Analysis: The premise states that 'A boy is drinking out of a water fountain shaped like a woman.' This provides specific information that a boy is drinking from a water fountain, not from a glass or any other container, and it mentions the type of drink is water. 2. Hypothesis Analysis: The hypothesis says 'A man is drinking lemonade from a glass.' This introduces new information: the drink is lemonade from a glass. 3. Comparing the Two: The premise clearly states the that the boy is drinking from a water fountain, not a glass, and it confirms the drink is water. 4. Conclusion: The hypothesis directly contradicts the premise because the drink, and the container are both different. Therefore, the relationship is contradiction.", "relationship": "contradiction"}}
+
     Question:
     Premise: A boy is drinking out of a water fountain shaped like a woman.
     Hypothesis: A male is getting a drink of water.
@@ -31,13 +38,6 @@ Examples:
 
     Answer:
     {{"cot": "1. Premise Analysis: The premise states 'A boy is drinking out of a water fountain shaped like a woman.' It describes a boy drinking from a fountain, with no information about who made the fountain or the boy's relationship to it. 2. Hypothesis Analysis: The hypothesis says 'A sculptor takes a drink from a fountain that he made that looks like his girlfriend.' It introduces two additional details: the person drinking is a sculptor, and the fountain was made by him to resemble his girlfriend. 3. Comparing the Two: The premise provides no direct information about the boy being a sculptor, nor that he created the fountain or that it looks like his girlfriend. While this scenario might be possible, the premise does not offer any evidence for the hypothesis. 4. Conclusion: Since the hypothesis might be true but there is no direct evidence to support it, the relationship is neutral.", "relationship": "neutral"}}
-
-    Question:
-    Premise: A boy is drinking out of a water fountain shaped like a woman.
-    Hypothesis: A man is drinking lemonade from a glass.
-
-    Answer:
-    {{"cot": "1. Premise Analysis: The premise states that 'A boy is drinking out of a water fountain shaped like a woman.' This provides specific information that a boy is drinking from a water fountain, not from a glass or any other container, and it mentions the type of drink is water. 2. Hypothesis Analysis: The hypothesis says 'A man is drinking lemonade from a glass.' This introduces new information: the drink is lemonade from a glass. 3. Comparing the Two: The premise clearly states the that the boy is drinking from a water fountain, not a glass, and it confirms the drink is water. 4. Conclusion: The hypothesis directly contradicts the premise because the drink, and the container are both different. Therefore, the relationship is contradiction.", "relationship": "contradiction"}}
 
 What is the logical relationship between the following premise and hypothesis? Your answer should: 1. strictly follow the standard parseable JSON format: {{"cot": <your chain-of-though>, "relationship": <your answer>}}; 2. contain only the answer part, avoid using stuff like 'Let's analyze the premise and hypothesis:' or 'Here is my answer:'.
 

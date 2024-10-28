@@ -4,9 +4,9 @@ import json
 
 url = "http://localhost:11434/api/generate"
 
-premise = "A blond-haired doctor and her African american assistant looking threw new medical manuals."
+premise = "A family walking with a soldier."
 
-hypothesis = "A doctor is studying."
+hypothesis = "A few people walk with a man in uniform."
 
 dataset_label = "NONE"
 
@@ -33,6 +33,20 @@ dataset_label = "NONE"
 #     {{"cot": "1. Premise Analysis: The premise states 'A boy is drinking out of a water fountain shaped like a woman.' It describes a boy drinking from a fountain, with no information about who made the fountain or the boy's relationship to it. 2. Hypothesis Analysis: The hypothesis says 'A sculptor takes a drink from a fountain that he made that looks like his girlfriend.' It introduces two additional details: the person drinking is a sculptor, and the fountain was made by him to resemble his girlfriend. 3. Comparing the Two: The premise provides no direct information about the boy being a sculptor, nor that he created the fountain or that it looks like his girlfriend. While this scenario might be possible, the premise does not offer any evidence for the hypothesis. 4. Conclusion: Since the hypothesis might be true but there is no direct evidence to support it, the relationship is neutral.", "relationship": "neutral"}}
 
 
+# Question:
+# Premise: A boy is drinking out of a water fountain shaped like a woman.
+# Hypothesis: A male is getting a drink of water.
+
+# Answer:
+# {{"reason": "The premise explicitly describes a boy, which is a male. The hypothesis only mentions a 'male' without specifying age or gender details. Since the premise already establishes that a male (the boy) is drinking from a water fountain shaped like a woman, it directly supports the hypothesis.", "relationship": "entailment"}}
+
+# Question:
+# Premise: A boy is drinking out of a water fountain shaped like a woman.
+# Hypothesis: A sculptor takes a drink from a fountain that he made that looks like his girlfriend.
+
+# Answer:
+# {{"reason": "The premise mentions a water fountain shaped like a woman, which does not necessarily imply the involvement of a sculptor or a personal connection to the subject. The premise only provides information about the appearance and use of the water fountain, without any direct link to the hypothesis.", "relationship": "neutral"}}
+
 prompt = f"""
 The logical relationship between the following premise and hypothesis is defined as one of the following:
 
@@ -40,7 +54,16 @@ contradiction: the hypothesis is definitely false given the premise, you can rej
 entailment: the hypothesis is definitely true given the premise, you can accept the hypothesis based on the premise.
 neutral: the hypothesis might be a true description of the premise, but there is no direct evidence to support it, you can neither accept nor reject the hypothesis based on the premise;
 
-What is the logical relationship between the following premise and hypothesis? Your answer should: 1. strictly follow the standard parseable JSON format: {{"cot": <your chain-of-though>, "relationship": <your answer>}}; 2. contain only the answer part, avoid using stuff like 'Let's analyze the premise and hypothesis:' or 'Here is my answer:'.
+
+Examples:
+    Question:
+    Premise: A boy is drinking out of a water fountain shaped like a woman.
+    Hypothesis: A man is drinking lemonade from a glass.
+
+    Answer:
+    {{"reason": "The premise describes a scenario where the drinker is a boy and the container is a water fountain, whereas the hypothesis talks about a male, which aligns to the premise (a boy), but the type of drink is lemonade. This mismatch makes it impossible to deduce the truth or falsehood of the hypothesis from the premise.", "relationship": "contradiction"}}
+
+What is the logical relationship between the following premise and hypothesis? Your answer should: 1. strictly follow the standard parseable JSON format in order: {{"reason": <explain how you derive the relationship>, "relationship": <your answer>}}; 2. contain only the answer part, avoid using stuff like 'Let's analyze the premise and hypothesis:' or 'Here is my answer:'.
 
 Question:
 Premise: {premise} 

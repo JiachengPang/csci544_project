@@ -5,7 +5,7 @@ import subprocess
 import sys
 import os
 
-OLLAMA_MODEL = 'llama3.2'
+OLLAMA_MODEL = 'llama3'
 
 def generate_prompt_short(premise, hypothesis):
     prompt = f"""
@@ -14,7 +14,9 @@ Entailment means the hypothesis is definitely true given the premise.
 Contradiction means the hypothesis is definitely false given the premise.
 Neutral means the hypothesis might be a true description of the premise, but there is no direct evidence to support it.
 
-What is the logical relationship between the following premise and hypothesis? Provide step by step reasoning before the final answer. Your answer should strictly follow the standard parseable JSON format: {{"reason": "<your_reason>", "relationship": "<your_answer>"}}, where your_answer should strictly be one word - entailment, neutral, or contradiction.
+What is the logical relationship between the following premise and hypothesis?
+Your answer should strictly follow the standard parseable JSON format: {{"reason": "<your_reason>", "relationship": "<your_answer>"}}, where your reason is a detailed step by step chain of thought through the question and your_answer should strictly be one word - entailment, neutral, or contradiction.
+Avoid any additional text outside of this format.
 
 Premise: {premise} 
 Hypothesis: {hypothesis}
@@ -118,12 +120,14 @@ def query_ollama_cmd(prompt, model=OLLAMA_MODEL):
     if result.stderr:
         print(f"Error querying Ollama: {result.stderr}", file=sys.stderr)
     
-    return result.stdout.strip()
+    message = result.stdout.strip()
+    print(message)
+    return message
 
 def parse_response(response_text):
     try:
         response_text_processed = json.loads(response_text)
-        response_text_processed = response_text_processed['relationship']
+        response_text_processed = response_text_processed['relationship'].lower()
     except Exception as e:
         print(f'Failed to load response text as json and get relationship. Message: {e}')
         return -1

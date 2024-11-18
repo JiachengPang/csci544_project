@@ -145,6 +145,7 @@ def parse_response(response_text):
 
 
 def process_csv(input_path, output_path, model=OLLAMA_MODEL):
+    print(f'Starting to process {model} on {input_path}')
     correct_count = 0
     total_count = 0
     with open(input_path, 'r', newline='', encoding='utf-8') as input:

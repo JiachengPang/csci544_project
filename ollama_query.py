@@ -5,7 +5,7 @@ import subprocess
 import sys
 import os
 
-OLLAMA_MODEL = 'qwen2.5'
+OLLAMA_MODEL = 'mistral'
 
 def generate_prompt_short(premise, hypothesis):
     prompt = f"""

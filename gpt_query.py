@@ -3,7 +3,7 @@ import ollama_query
 import csv
 from openai import OpenAI
 
-GPT_MODEL = 'gpt-4o-mini'
+GPT_MODEL = 'gpt-4o'
 client = OpenAI(api_key=key.OPENAI_KEY)
 
 def query_gpt(query, client):

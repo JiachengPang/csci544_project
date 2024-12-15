@@ -15,7 +15,7 @@ Contradiction means the hypothesis is definitely false given the premise.
 Neutral means the hypothesis might be a true description of the premise, but there is no direct evidence to support it.
 
 What is the logical relationship between the following premise and hypothesis?
-Your answer should strictly follow the standard parseable JSON format: {{"reason": "<your_reason>", "relationship": "<your_answer>"}}, where your reason is a detailed step by step chain of thought through the question and your_answer should strictly be one word - entailment, neutral, or contradiction.
+Your answer should strictly follow this format: {{"reason": "<your_reason>", "relationship": "<your_answer>"}}, where your reason is a detailed step by step chain of thought through the question and your_answer should strictly be one word - entailment, neutral, or contradiction.
 Avoid any additional text outside of this format.
 
 Premise: {premise} 

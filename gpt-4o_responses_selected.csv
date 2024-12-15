@@ -1,0 +1,71 @@
+,index,premise,hypothesis,true_label,response
+20,20,A blond-haired doctor and her African american assistant looking threw new medical manuals.,A doctor is studying,1,1
+242,242,"A man, woman, and child get their picture taken in front of the mountains.",A family on vacation is posing.,0,1
+372,372,Everyone on the street in the city seem to be busy doing their own thing.,People are conducting business in the city.,0,1
+596,596,A group of people stand near and on a large black square on the ground with some yellow writing on it.,a group of people stand,1,1
+707,707,A family walking with a soldier.,A few people walk with a man in uniform.,1,0
+730,730,"A female runner dressed in blue athletic wear is running in a competition, while spectators line the street.",There are children in the streets.,2,1
+835,835,"Five young men are in a loft, with one holding a whiteboard and one making a shaka sign in front of the television.",Some people are at work.,2,1
+857,857,A man wearing a snorkel and goggles gives a thumbs up as he and another person speed through the water.,There are two guys above the water.,1,1
+304,304,Group of people wearing black shirts riding in an open top vehicle.,Froends ride in an open top vehicle together.,1,1
+356,356,A birthday party for many little people to enjoy.,Children enjoying a birthday party.,1,1
+358,358,A birthday party for many little people to enjoy.,Children at a birthday party.,1,0
+397,397,Four men playing drums in very orange lighting while one of them is also drinking something out of a bottle.,the men are musicians,0,1
+561,561,Four boys are about to be hit by an approaching wave.,A giant wave is about to crash on some boys.,0,1
+833,833,"Five young men are in a loft, with one holding a whiteboard and one making a shaka sign in front of the television.",Five men watch tv.,1,1
+1253,1253,A man in aerodynamic gear riding a bicycle down a road around a sharp curve.,the man is going to the store,2,1
+1350,1350,"An organ grinder, in World War I helmet and clown makeup, speaks to an older man in a blue, striped polo shirt.","Two men are seated on a park bench, one in clown makeup and the other in a striped polo shirt.",0,1
+1405,1405,3 girls chatting and laughing on the stairwell.,A group of girls are having fun.,1,1
+1561,1561,Pedestrians are gazing at a display of books set out on a sidewalk under a tree.,People are standing on a sidewalk.,1,0
+1571,1571,A young boy runs across a road in front of a sky blue building with barred windows.,A boy runs across a road in front of an abandoned building.,0,1
+1598,1598,The man is trying to make a pottery that he can market soon.,An old man is making pottery to sell.,0,1
+1677,1677,A classroom of mostly women is being shown a presentation.,The college class of mostly females watched a presentation.,0,1
+1695,1695,A blond woman in a white shirt demonstrates her talents to a crowd.,The woman is a street performer.,0,1
+1779,1779,A concert with a blue shirted boy in the front and light shining in the back,The moment the fan saw the light,2,1
+1780,1780,A concert with a blue shirted boy in the front and light shining in the back,The moment has it's fan,2,1
+1841,1841,Two workers with leaf blowers blow orange leaves off patches of grass next to a wet sidewalk.,Two workers with leaf blowers blow leaves at each other for  fun,2,1
+1915,1915,A child buried in the sand.,The child is dead.,2,1
+1927,1927,"A guy on Rollerblades, sliding across a rail.",The skateboarder rides the rail.,0,2
+1964,1964,A small child is riding in a red wagon.,A kid is playing inside the house.,1,1
+2031,2031,An Asian woman in a hat is measuring food from barrels with a ladle into a smaller metal pan.,A woman is handling food containers.,1,0
+2152,2152,A man in a colorful shirt and a lady in a white blouse sign copies of books for people.,Two people sign copies of their latest novel.,0,1
+2160,2160,Two men playing in a beautiful lake surrounded by mountains.,A couple people enjoy the water near the mountains.,1,0
+2220,2220,A man is painting a city scene on a canvas in the street.,A man is painting some dolphins.,1,2
+2225,2225,A train conductor in coveralls is standing in the door of the trail.,The conductor is walking in a field.,1,1
+2357,2357,A man in a black jacket standing beside a green mailbox thoroughly soiled by a group of pigeons that are nearby.,A man is outdoors,1,0
+2450,2450,"A bicycle rider wearing racing gear pedals a yellow bike past the wire fence at the edge of a field, with a stand of trees in the background.",Someone was trying to take a shortcut home.,2,1
+2507,2507,A nurse is listening to another women's heartbeat with a stethoscope.,A woman in the doctors office.,0,1
+2637,2637,Two individuals use a photo kiosk,The people are together,1,1
+2700,2700,A man in a tank top fixing himself a hotdog.,the child was happy`,2,1
+2701,2701,A man in a tank top fixing himself a hotdog.,two girls were ther,2,1
+2801,2801,A man wearing a hat and boots is digging for something in the snow.,A man is trying to get to something by digging.,1,1
+2819,2819,Female in a military uniform with her hair tied back.,the female is wearing a ponytail,0,1
+2885,2885,A high school band getting ready to perform.,A high school band prepares to play in front of a large crowd.,0,1
+2915,2915,"Two dirt bike riders, one wearing green and the other wearing blue and white, are jumping a hill.",Two dirt bike riders are outside,1,0
+3152,3152,Shirtless man with long pole navigates covered boat down a palm tree lined river past a hut.,A man without a shirt is on a river.,1,0
+3153,3153,Four African boys playing soccer.,Some boys are in the play ground,2,0
+3155,3155,Four African boys playing soccer.,Some boys are running behind a ball,0,1
+3166,3166,A man in a green shirt and large beige hat is supervising a newsstand that sells snacks and drinks.,the woman is white,2,1
+3211,3211,A female gymnast flies off of the lower bar and is suspended in the air with her feet pointed upward.,A gymnast is in mid air.,1,0
+3250,3250,A man is holding a book standing in front of a chalkboard.,A person is in a classroom teaching.,0,1
+3271,3271,Many people who appear to be Asian stand in line at a train station waiting patiently for the next train.,some people standing,1,0
+3329,3329,"A man on a bike, with the sun beating down in the background, just launched off of a dirt ramp and is coming back down.",Cyclists competing in the Tour de France.,2,1
+3346,3346,"Two men stand in a lift as four others, all dressed in black and bright yellow stripes, look up on them.",Six men dressed in black and yellow uniforms are standing in a gymnasium.,0,1
+3429,3429,Children playing a video game together.,The kids are indoors playing a video game.,0,1
+3466,3466,A man wearing a welding mask working on a duct.,The man's head is partially obscured.,1,0
+3494,3494,A man talking into a microphone with a woman standing next to him.,The woman is sitting in the chair next to the podium.,1,2
+3520,3520,A worker is on a cherry picker in a palm tree.,A worker falls out of a tree.,1,1
+3701,3701,"Three black people, two men and one woman, in the middle of a small, rural street, are piling up items on top of a taxi cab with a net dangling down on top of the windshield, while two children and two other people are nearby.",Many people load up a taxi,1,1
+3733,3733,A man sitting on steps with a child as a bystander walks by.,A man and a child sitting on steps saw a woman walk by.,0,1
+3813,3813,A man in a short Mohawk and beard.,A man with a short Mohawk and beard stands outside.,0,1
+3829,3829,"A young redheaded girl, wearing a yellow shirt, black pants, and sneakers, jumping in a grassy field with blue skies and wispy clouds in the background.",A girl jumps in her newly cut lawn,0,1
+3876,3876,A young male is running while playing tennis against another person.,A man moves while playing a game,1,0
+3884,3884,"Two women, standing at a fence, are each talking on their cellphones, while two men sitting on the opposite side of the fence are having a conversation.",The two men and women are talking to people that they know.,2,1
+3890,3890,A lit girl splashes around in natural water.,The girl is outside.,1,0
+3918,3918,Two men are shirtless on the beach on a beautiful day.,Two men are shirtless.,1,0
+3991,3991,A brown dog persues a Frisbee across the grass as the thrower watches.,A dog plays in the park.,0,1
+3995,3995,A man with a white beard speaks into a microphone wearing a long-sleeved gray button down shirt.,A man is speaking to a crowd.,0,1
+4000,4000,A man in a gray coat is walking on a fallen tree trunk in a forest.,A young man wearing a gray winter jacket walks on a fallen oak tree.,0,1
+4069,4069,A young woman with red-hair is adjusting a blue bracelet on an older woman with short hair.,A redhead is putting a bracelet on an old woman.,1,0
+4086,4086,Artists install a new exhibit in a gallery.,People put up new art.,1,0
+4087,4087,Artists install a new exhibit in a gallery.,People put up new art at the towns local gallery.,0,1

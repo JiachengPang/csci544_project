@@ -3,5 +3,8 @@
 *.pth
 *.npz
 *.npy
+snli_test_copy.csv
+snli_train.csv
+snli_validation.csv
 openai_key.py
 __pycache__

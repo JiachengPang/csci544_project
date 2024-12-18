@@ -15,8 +15,10 @@ if __name__ == '__main__':
     selected_path = 'snli_selected.csv'
     # select_test(test_path, target_ids, selected_path)
 
-    model = gpt_query.GPT_MODEL
+    # model = gpt_query.GPT_MODEL
+    model = ollama_query.OLLAMA_MODEL
 
     output_path = f'{model}_responses_selected.csv'
-    total, correct = gpt_query.process_csv_gpt(selected_path, output_path, model)
+    # total, correct = gpt_query.process_csv_gpt(selected_path, output_path, model)
+    total, correct = ollama_query.process_csv(selected_path, output_path, model)
     print(f'Finished querying {model} on selected tests, total examples {total}, correct predictions {correct}, accuracy {(correct/total):.4f}')

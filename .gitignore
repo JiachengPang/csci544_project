@@ -3,6 +3,5 @@
 *.pth
 *.npz
 *.npy
-*.csv
 openai_key.py
 __pycache__
